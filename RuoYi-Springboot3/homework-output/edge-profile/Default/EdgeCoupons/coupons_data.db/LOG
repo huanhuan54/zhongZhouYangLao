@@ -1,0 +1,6 @@
+2026/06/23-19:44:38.936 7b80 Reusing MANIFEST C:\Users\青峰不语\Desktop\黑马实训\zzyl-springboot\RuoYi-Springboot3\homework-output\edge-profile\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/06/23-19:44:38.938 7b80 Recovering log #4
+2026/06/23-19:44:38.940 7b80 Reusing old log C:\Users\青峰不语\Desktop\黑马实训\zzyl-springboot\RuoYi-Springboot3\homework-output\edge-profile\Default\EdgeCoupons/coupons_data.db/000004.log 
+2026/06/23-19:44:39.414 6d18 Level-0 table #8: started
+2026/06/23-19:44:39.421 6d18 Level-0 table #8: 682863 bytes OK
+2026/06/23-19:44:39.424 6d18 Delete type=0 #4

@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.nursing.mapper.NursingPlanMapper">
+
+    <resultMap type="NursingPlan" id="NursingPlanResult">
+        <id     property="id"         column="id"          />
+        <result property="sortNo"     column="sort_no"     />
+        <result property="planName"   column="plan_name"   />
+        <result property="status"     column="status"      />
+        <result property="remark"     column="remark"      />
+        <result property="createBy"   column="create_by"   />
+        <result property="createTime" column="create_time" />
+        <result property="updateBy"   column="update_by"   />
+        <result property="updateTime" column="update_time" />
+    </resultMap>
+
+    <resultMap type="NursingPlanProject" id="NursingPlanProjectResult">
+        <id     property="id"               column="id"                />
+        <result property="planId"           column="plan_id"           />
+        <result property="projectId"        column="project_id"        />
+        <result property="projectName"      column="project_name"      />
+        <result property="executeTime"      column="execute_time"      />
+        <result property="executeCycle"     column="execute_cycle"     />
+        <result property="executeFrequency" column="execute_frequency" />
+        <result property="remark"           column="remark"            />
+        <result property="createBy"         column="create_by"         />
+        <result property="createTime"       column="create_time"       />
+        <result property="updateBy"         column="update_by"         />
+        <result property="updateTime"       column="update_time"       />
+    </resultMap>
+
+    <sql id="selectNursingPlanVo">
+        select id, sort_no, plan_name, status, remark, create_by, create_time, update_by, update_time
+        from nursing_plan
+    </sql>
+
+    <select id="selectNursingPlanList" parameterType="NursingPlan" resultMap="NursingPlanResult">
+        <include refid="selectNursingPlanVo"/>
+        <where>
+            <if test="planName != null and planName != ''">
+                AND plan_name like concat('%', #{planName}, '%')
+            </if>
+            <if test="status != null">
+                AND status = #{status}
+            </if>
+        </where>
+        order by sort_no asc, id asc
+    </select>
+
+    <select id="selectNursingPlanById" parameterType="Long" resultMap="NursingPlanResult">
+        <include refid="selectNursingPlanVo"/>
+        where id = #{id}
+    </select>
+
+    <select id="selectProjectPlansByPlanId" parameterType="Long" resultMap="NursingPlanProjectResult">
+        select pp.id, pp.plan_id, pp.project_id, p.name as project_name, pp.execute_time,
+               pp.execute_cycle, pp.execute_frequency, pp.remark, pp.create_by, pp.create_time,
+               pp.update_by, pp.update_time
+        from nursing_plan_project pp
+        left join nursing_project p on p.id = pp.project_id
+        where pp.plan_id = #{planId}
+        order by pp.id asc
+    </select>
+
+    <select id="selectEnabledPlans" resultMap="NursingPlanResult">
+        <include refid="selectNursingPlanVo"/>
+        where status = 1
+        order by sort_no asc, id asc
+    </select>
+
+    <insert id="insertNursingPlan" parameterType="NursingPlan" useGeneratedKeys="true" keyProperty="id">
+        insert into nursing_plan
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sortNo != null">sort_no,</if>
+            <if test="planName != null and planName != ''">plan_name,</if>
+            <if test="status != null">status,</if>
+            <if test="remark != null">remark,</if>
+            <if test="createBy != null and createBy != ''">create_by,</if>
+            create_time
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sortNo != null">#{sortNo},</if>
+            <if test="planName != null and planName != ''">#{planName},</if>
+            <if test="status != null">#{status},</if>
+            <if test="remark != null">#{remark},</if>
+            <if test="createBy != null and createBy != ''">#{createBy},</if>
+            sysdate()
+        </trim>
+    </insert>
+
+    <update id="updateNursingPlan" parameterType="NursingPlan">
+        update nursing_plan
+        <set>
+            <if test="sortNo != null">sort_no = #{sortNo},</if>
+            <if test="planName != null and planName != ''">plan_name = #{planName},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="remark != null">remark = #{remark},</if>
+            <if test="updateBy != null and updateBy != ''">update_by = #{updateBy},</if>
+            update_time = sysdate()
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteNursingPlanById" parameterType="Long">
+        delete from nursing_plan where id = #{id}
+    </delete>
+
+    <delete id="deleteProjectPlansByPlanId" parameterType="Long">
+        delete from nursing_plan_project where plan_id = #{planId}
+    </delete>
+
+    <insert id="batchInsertProjectPlans" parameterType="java.util.List">
+        insert into nursing_plan_project
+            (plan_id, project_id, execute_time, execute_cycle, execute_frequency, remark, create_by, create_time)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.planId}, #{item.projectId}, #{item.executeTime}, #{item.executeCycle},
+             #{item.executeFrequency}, #{item.remark}, #{item.createBy}, sysdate())
+        </foreach>
+    </insert>
+</mapper>

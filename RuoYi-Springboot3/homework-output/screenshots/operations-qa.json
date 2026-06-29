@@ -1,0 +1,36 @@
+{
+  "screenshots": [
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-health-list.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-health-detail.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-admission-list.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-admission-form.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-checkout-list.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-room-type.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-bed-preview.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-smart-bed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-contract.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-customer.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-device.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-device-detail.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-alarm-rule.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-alarm-data.png"
+  ],
+  "checks": {
+    "healthList": true,
+    "healthDetail": true,
+    "admissionList": true,
+    "admissionForm": true,
+    "admissionBill": true,
+    "checkoutList": true,
+    "roomType": true,
+    "bedPreview": true,
+    "smartBed": true,
+    "contract": true,
+    "customer": true,
+    "deviceActions": true,
+    "deviceDetail": true,
+    "alarmRule": true,
+    "alarmDialog": true
+  },
+  "consoleErrors": []
+}

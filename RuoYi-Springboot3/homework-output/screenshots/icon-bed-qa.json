@@ -1,0 +1,20 @@
+{
+  "screenshots": [
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-responsible-icon-fixed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-menu-icons-fixed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-bed-legend-fixed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-bed-status-edit.png"
+  ],
+  "checks": {
+    "responsibleIcon": true,
+    "deviceIcon": true,
+    "alarmRuleIcon": true,
+    "alarmDataIcon": true,
+    "legendIcons": true,
+    "statusControls": true,
+    "statusLabels": true,
+    "persistedPending": true,
+    "restoredOriginal": true
+  },
+  "consoleErrors": []
+}

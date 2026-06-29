@@ -1,0 +1,39 @@
+{
+   "action": {
+      "default_icon": {
+         "16": "lib/logo/16.png",
+         "32": "lib/logo/32.png"
+      },
+      "default_popup": "popup/popup.html"
+   },
+   "background": {
+      "service_worker": "/show_ranking/ranking/service_worker.js"
+   },
+   "content_scripts": [ {
+      "css": [ "show_ranking/style.css", "lib/sweetalert2/sweetalert2.min.css", "lib/paper/dialog.css" ],
+      "exclude_matches": [ "https://www.scoregg.com/*", "https://appstorrent.ru/*", "https://www.ctrip.com/*", "https://online.phyloviz.net/*", "https://*.overleaf.com/*", "https://overleaf.com/*", "https://*.qualtrics.com/*", "https://*/*epdf/*", "https://*.doubao.com/*", "https://wenxin.baidu.com/*", "https://tongyi.aliyun.com/*", "https://hunyuan.tencent.com/*", "https://www.huawei.com/cn/ascend/*", "https://chat.deepseek.com/*", "https://*/*pdf/*" ],
+      "js": [ "lib/js/jquery-3.3.1.min.js", "lib/paper/dialog.js", "lib/paper/xm-select.js", "show_ranking/ranking/utils.js", "lib/sweetalert2/sweetalert2.min.js", "translation/translation.js" ],
+      "matches": [ "https://*/*", "http://*/*" ],
+      "run_at": "document_end"
+   }, {
+      "css": [ "show_ranking/style.css", "lib/sweetalert2/sweetalert2.min.css", "lib/paper/dialog.css" ],
+      "js": [ "lib/js/jquery-3.3.1.min.js", "lib/paper/dialog.js", "lib/paper/xm-select.js", "show_ranking/ranking/utils.js", "lib/sweetalert2/sweetalert2.min.js", "translation/translation.js" ],
+      "matches": [ "https://www.tandfonline.com/doi/pdf/*" ],
+      "run_at": "document_end"
+   } ],
+   "default_locale": "zh_CN",
+   "description": "显示各种文献排名，并且提供翻译、文献收藏功能，助力科研。",
+   "homepage_url": "https://www.easyscholar.cc",
+   "host_permissions": [ "https://easyscholar.co/*", "https://www.easyscholar.cc/*", "https://easyscholar.cc/*" ],
+   "icons": {
+      "128": "lib/logo/128.png",
+      "16": "lib/logo/16.png",
+      "48": "lib/logo/48.png"
+   },
+   "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAqdanMPbb709Vj4kyuNIHZh8ftlcAIO2t9OWpQz+njvTf8wzVrGRh5QQsYf6TIRyx6h+ofLK5nraZl8MSZ2Gjm79fxJZ1H9SnTsD6kConOIKMC1OPOz5mD44bUOEHReRAA2GgsW2z9rmJ9ATTwA5iOo6qDhXjJpO167CkER7LTXIuH65HCTWpG3eL9SO/mhythcpSl1rgWCFjxpRfft9LSHRNJF0w/xsygQabOqe1+6OSlzngWgs0qI/LTv1EZ+NoD11HmN9i39QYx2eAUvIudBzqhHuEyeYDpJdhpFaB5bBS249A8rPv7lZU7yS3q8OCF/t/rwS7EUGRwqdYGTaZ+wIDAQAB",
+   "manifest_version": 3,
+   "name": "easyScholar",
+   "permissions": [ "storage" ],
+   "update_url": "https://edge.microsoft.com/extensionwebstorebase/v1/crx",
+   "version": "14.7"
+}

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.nursing.mapper.RefundOrderMapper">
+
+    <resultMap id="RefundOrderResult" type="RefundOrder">
+        <id property="id" column="id"/>
+        <result property="refundNo" column="refund_no"/>
+        <result property="orderId" column="order_id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="refundAmount" column="refund_amount"/>
+        <result property="applicant" column="applicant"/>
+        <result property="applicantType" column="applicant_type"/>
+        <result property="applyTime" column="apply_time"/>
+        <result property="refundReason" column="refund_reason"/>
+        <result property="refundChannel" column="refund_channel"/>
+        <result property="refundMethod" column="refund_method"/>
+        <result property="refundStatus" column="refund_status"/>
+        <result property="refundTime" column="refund_time"/>
+        <result property="refundTransactionNo" column="refund_transaction_no"/>
+        <result property="failureCode" column="failure_code"/>
+        <result property="failureReason" column="failure_reason"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <select id="selectRefundOrderList" parameterType="RefundOrder" resultMap="RefundOrderResult">
+        select f.*, o.order_status
+        from nursing_refund f
+        left join nursing_order o on o.id = f.order_id
+        <where>
+            <if test="refundNo != null and refundNo != ''">
+                and f.refund_no like concat('%', #{refundNo}, '%')
+            </if>
+            <if test="orderNo != null and orderNo != ''">
+                and f.order_no like concat('%', #{orderNo}, '%')
+            </if>
+            <if test="applicant != null and applicant != ''">
+                and f.applicant like concat('%', #{applicant}, '%')
+            </if>
+            <if test="refundStatus != null">and f.refund_status = #{refundStatus}</if>
+            <if test="params.beginTime != null and params.beginTime != ''">
+                and f.apply_time &gt;= #{params.beginTime}
+            </if>
+            <if test="params.endTime != null and params.endTime != ''">
+                and f.apply_time &lt;= concat(#{params.endTime}, ' 23:59:59')
+            </if>
+        </where>
+        order by f.apply_time desc, f.id desc
+    </select>
+
+    <select id="selectRefundOrderById" parameterType="Long" resultMap="RefundOrderResult">
+        select f.*, o.order_status
+        from nursing_refund f
+        left join nursing_order o on o.id = f.order_id
+        where f.id = #{id}
+    </select>
+
+    <insert id="insertRefundOrder" parameterType="RefundOrder" useGeneratedKeys="true" keyProperty="id">
+        insert into nursing_refund
+        (refund_no, order_id, order_no, refund_amount, applicant, applicant_type, apply_time,
+         refund_reason, refund_channel, refund_method, refund_status, create_by, create_time)
+        values
+        (#{refundNo}, #{orderId}, #{orderNo}, #{refundAmount}, #{applicant}, #{applicantType},
+         #{applyTime}, #{refundReason}, #{refundChannel}, #{refundMethod}, #{refundStatus},
+         #{createBy}, #{createTime})
+    </insert>
+</mapper>

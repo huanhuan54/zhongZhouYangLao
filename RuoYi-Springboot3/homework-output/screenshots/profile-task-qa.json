@@ -1,0 +1,27 @@
+{
+  "screenshots": [
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-profile.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-task-pending.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-task-executed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-task-cancelled.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-task-detail.png"
+  ],
+  "profileChecks": {
+    "hasTitle": true,
+    "hasName": true,
+    "hasPhone": true,
+    "hasPasswordTab": true
+  },
+  "taskChecks": {
+    "hasTitle": true,
+    "hasPendingActions": true,
+    "hasDetailSections": true,
+    "dialogChecks": {
+      "执行": true,
+      "取消": true,
+      "改期": true,
+      "换人": true
+    }
+  },
+  "consoleErrors": []
+}

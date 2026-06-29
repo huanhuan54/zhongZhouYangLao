@@ -1,0 +1,41 @@
+{
+  "menuText": "中州养老管理系统\n首页\n来访管理\n服务管理\n中州智询",
+  "theme": {
+    "background": "rgb(255, 255, 255)",
+    "width": "184px"
+  },
+  "forbiddenMenus": [],
+  "requiredMenus": [
+    "首页",
+    "来访管理",
+    "服务管理",
+    "中州智询"
+  ],
+  "consoleErrors": [],
+  "results": [
+    {
+      "route": "index",
+      "title": "中州养老管理系统",
+      "screenshot": "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-home-light.png",
+      "bodyText": "中州养老管理系统\n首页\n来访管理\n服务管理\n中州智询\n首页\n3\n 管理员\n数据概览数据更新：2026-06-25\n15\n人\n\n老人数量\n\n15\n张\n\n床位数量\n\n8\n项\n\n服务数量\n\n5\n人\n\n员工数量\n\n0\n人\n\n今日来访\n\n我的信息\n\n您好，管理员，今天也元气满满的一天！\n\n 138****0405\n 院长办公室\n 超级管理员\n下属员工\n+3\n数据统计\n收入情况\n入退情况\n服务情况\n常用功能\n预约登记\n来访登记\n护理项目\n护理计划\n护理等级\n负责老人\n智能问答\n老人等级分布\n数据更新：2026-06-25\n老人年龄分布\n数据更新：2026-06-25\n预约总览\n查看全部\n6月25日\n今日待上门 2 人\n09:00\n探访\n\n预约人姓名：余佳俊\n\n10:30\n参观\n\n预约人姓名：高启强"
+    },
+    {
+      "route": "nursing/project",
+      "title": "中州养老管理系统",
+      "screenshot": "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-project-light.png",
+      "bodyText": "中州养老管理系统\n首页\n来访管理\n服务管理\n护理项目\n护理计划\n护理等级\n负责老人\n中州智询\n首页/\n服务管理/\n护理项目\n3\n 管理员\n项目名称项目类型\n状态\n搜索重置\n新增\n修改\n删除\n\t序号\t项目图片\t项目名称\t项目编号\t项目类型\t参考价格\t服务时长\t状态\t排序\t操作\n\t\n1\n\t\n\t\n助浴服务\n\t\nHY-001\n\t\n生活护理\n\t\n￥80\n\t\n45分钟\n\t\n\t\n1\n\t\n详情修改删除\n\n\n\t\n2\n\t\n\t\n助餐服务\n\t\nHY-002\n\t\n生活护理\n\t\n￥50\n\t\n30分钟\n\t\n\t\n2\n\t\n详情修改删除\n\n\n\t\n3\n\t\n\t\n洗脸护理\n\t\nHY-003\n\t\n生活护理\n\t\n￥30\n\t\n15分钟\n\t\n\t\n3\n\t\n详情修改删除\n\n\n\t\n4\n\t\n\t\n洗头护理\n\t\nHY-004\n\t\n生活护理\n\t\n￥40\n\t\n20分钟\n\t\n\t\n4\n\t\n详情修改删除\n\n\n\t\n5\n\t\n\t\n足部护理\n\t\nHY-005\n\t\n生活护理\n\t\n￥35\n\t\n25分钟\n\t\n\t\n5\n\t\n详情修改删除\n\n\n\t\n6\n\t\n\t\n修剪指甲\n\t\nHY-006\n\t\n生活护理\n\t\n￥20\n\t\n15分钟\n\t\n\t\n6\n\t\n详情修改删除\n\n\n\t\n7\n\t\n\t\n翻身拍背\n\t\nHY-007\n\t\n医疗护理\n\t\n￥45\n\t\n20分钟\n\t\n\t\n7\n\t\n详情修改删除\n\n\n\t\n8\n\t\n\t\n康复运动\n\t\nHY-008\n\t\n康复护理\n\t\n￥100\n\t\n60分钟\n\t\n\t\n8\n\t\n详情修改删除\n共 8 条\n1\n前往页"
+    },
+    {
+      "route": "nursing/responsible",
+      "title": "中州养老管理系统",
+      "screenshot": "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-responsible-light.png",
+      "bodyText": "中州养老管理系统\n首页\n来访管理\n服务管理\n护理项目\n护理计划\n护理等级\n负责老人\n中州智询\n首页/\n服务管理/\n负责老人\n3\n 管理员\n1楼\n2楼\n3楼\n 批量设置护理员\n房间号：101\n 批量设置护理员\n设置护理员\n床位号：1011\n老人姓名：安欣\n二级护理等级\n护理员姓名：\n顾廷烨、盛明兰\n设置护理员\n床位号：1012\n老人姓名：高启强\n三级护理等级\n护理员姓名：\n顾廷烨、盛如兰\n设置护理员\n床位号：1013\n老人姓名：高启盛\n一级护理等级\n护理员姓名：\n盛明兰、盛华兰\n房间号：102\n 批量设置护理员\n设置护理员\n床位号：1021\n老人姓名：陈泰\n二级护理等级\n护理员姓名：\n盛如兰\n设置护理员\n床位号：1022\n老人姓名：李有田\n三级护理等级\n护理员姓名：\n盛华兰\n设置护理员\n床位号：1023\n老人姓名：徐江\n一级护理等级\n护理员姓名：\n盛华兰"
+    },
+    {
+      "route": "aiconsult/virtualagent",
+      "title": "中州养老管理系统",
+      "screenshot": "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-ai-light.png",
+      "bodyText": "中州养老管理系统\n首页\n来访管理\n服务管理\n中州智询\n小智养老\n首页/\n中州智询/\n小智养老\n3\n 管理员\n小智养老\n\n中州养老智能问答助手\n\n如何预约探访老人？\n养老院有哪些护理项目？\n护理等级如何选择？\n怎样给老人设置护理员？\n可以咨询\n\n护理项目与收费\n\n护理计划与等级\n\n探访预约流程\n\n护理员安排\n\n养老服务咨询本地知识库\n清空对话\n小智\n您好，我是中州养老智能助手小智。您可以咨询护理项目、护理计划、探访预约、老人照护等问题。\n0/500\n智能回答仅供参考，健康问题请咨询专业医护人员。\n 发送"
+    }
+  ]
+}

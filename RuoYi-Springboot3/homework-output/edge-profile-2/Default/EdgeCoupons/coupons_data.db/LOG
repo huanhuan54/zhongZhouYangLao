@@ -1,0 +1,5 @@
+2026/06/23-18:56:49.054 67f8 Creating DB C:\Users\青峰不语\Desktop\黑马实训\zzyl-springboot\RuoYi-Springboot3\homework-output\edge-profile-2\Default\EdgeCoupons/coupons_data.db since it was missing.
+2026/06/23-18:56:49.074 67f8 Reusing MANIFEST C:\Users\青峰不语\Desktop\黑马实训\zzyl-springboot\RuoYi-Springboot3\homework-output\edge-profile-2\Default\EdgeCoupons/coupons_data.db/MANIFEST-000001
+2026/06/23-18:56:49.427 1ddc Level-0 table #5: started
+2026/06/23-18:56:49.433 1ddc Level-0 table #5: 682681 bytes OK
+2026/06/23-18:56:49.435 1ddc Delete type=0 #3

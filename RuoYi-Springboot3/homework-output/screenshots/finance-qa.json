@@ -1,0 +1,24 @@
+{
+  "screenshots": [
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-room-type-images.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-bill.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-bill-detail.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-prepayment.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-balance.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-arrears.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-finance-arrears-dialog.png"
+  ],
+  "checks": {
+    "menuOrder": true,
+    "residenceIcon": true,
+    "roomImages": true,
+    "billPage": true,
+    "generateDialog": true,
+    "payDialog": true,
+    "billDetail": true,
+    "rechargeDialog": true,
+    "balancePage": true,
+    "arrearsDialog": true
+  },
+  "consoleErrors": []
+}

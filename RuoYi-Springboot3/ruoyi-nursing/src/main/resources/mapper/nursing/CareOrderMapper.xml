@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.nursing.mapper.CareOrderMapper">
+
+    <resultMap id="CareOrderResult" type="CareOrder">
+        <id property="id" column="id"/>
+        <result property="orderNo" column="order_no"/>
+        <result property="residentId" column="resident_id"/>
+        <result property="projectId" column="project_id"/>
+        <result property="taskId" column="task_id"/>
+        <result property="orderAmount" column="order_amount"/>
+        <result property="expectedServiceTime" column="expected_service_time"/>
+        <result property="orderUser" column="order_user"/>
+        <result property="orderUserPhone" column="order_user_phone"/>
+        <result property="orderStatus" column="order_status"/>
+        <result property="paymentStatus" column="payment_status"/>
+        <result property="payChannel" column="pay_channel"/>
+        <result property="payOrderNo" column="pay_order_no"/>
+        <result property="payTime" column="pay_time"/>
+        <result property="cancelReason" column="cancel_reason"/>
+        <result property="cancelTime" column="cancel_time"/>
+        <result property="refundStatus" column="refund_status"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+        <result property="elderName" column="elder_name"/>
+        <result property="bedNo" column="bed_no"/>
+        <result property="projectName" column="project_name"/>
+        <result property="caregiverName" column="caregiver_name"/>
+        <result property="executeTime" column="execute_time"/>
+        <result property="executeImage" column="execute_image"/>
+        <result property="executeRecord" column="execute_record"/>
+        <result property="refundNo" column="refund_no"/>
+        <result property="refundAmount" column="refund_amount"/>
+        <result property="applicant" column="applicant"/>
+        <result property="applicantType" column="applicant_type"/>
+        <result property="applyTime" column="apply_time"/>
+        <result property="refundReason" column="refund_reason"/>
+        <result property="refundChannel" column="refund_channel"/>
+        <result property="refundMethod" column="refund_method"/>
+        <result property="refundTime" column="refund_time"/>
+        <result property="refundTransactionNo" column="refund_transaction_no"/>
+        <result property="failureCode" column="failure_code"/>
+        <result property="failureReason" column="failure_reason"/>
+    </resultMap>
+
+    <sql id="orderJoinSql">
+        select o.id, o.order_no, o.resident_id, o.project_id, o.task_id, o.order_amount,
+               o.expected_service_time, o.order_user, o.order_user_phone, o.order_status,
+               o.payment_status, o.pay_channel, o.pay_order_no, o.pay_time, o.cancel_reason,
+               o.cancel_time, o.refund_status, o.create_by, o.create_time, o.update_by,
+               o.update_time, o.remark, r.elder_name, r.bed_no, p.name as project_name,
+               t.execute_time, t.execute_image, t.execute_record, c.name as caregiver_name,
+               f.refund_no, f.refund_amount, f.applicant, f.applicant_type, f.apply_time,
+               f.refund_reason, f.refund_channel, f.refund_method, f.refund_time,
+               f.refund_transaction_no, f.failure_code, f.failure_reason
+        from nursing_order o
+        left join nursing_resident r on r.id = o.resident_id
+        left join nursing_project p on p.id = o.project_id
+        left join nursing_task t on t.id = o.task_id
+        left join nursing_caregiver c on c.id = t.caregiver_id
+        left join nursing_refund f on f.id = (
+            select max(fr.id) from nursing_refund fr where fr.order_id = o.id
+        )
+    </sql>
+
+    <select id="selectCareOrderList" parameterType="CareOrder" resultMap="CareOrderResult">
+        <include refid="orderJoinSql"/>
+        <where>
+            <if test="orderNo != null and orderNo != ''">
+                and o.order_no like concat('%', #{orderNo}, '%')
+            </if>
+            <if test="elderName != null and elderName != ''">
+                and r.elder_name like concat('%', #{elderName}, '%')
+            </if>
+            <if test="orderUser != null and orderUser != ''">
+                and o.order_user like concat('%', #{orderUser}, '%')
+            </if>
+            <if test="orderStatus != null">and o.order_status = #{orderStatus}</if>
+            <if test="params.beginTime != null and params.beginTime != ''">
+                and o.create_time &gt;= #{params.beginTime}
+            </if>
+            <if test="params.endTime != null and params.endTime != ''">
+                and o.create_time &lt;= concat(#{params.endTime}, ' 23:59:59')
+            </if>
+        </where>
+        order by o.create_time desc, o.id desc
+    </select>
+
+    <select id="selectCareOrderById" parameterType="Long" resultMap="CareOrderResult">
+        <include refid="orderJoinSql"/>
+        where o.id = #{id}
+    </select>
+
+    <update id="cancelOrder">
+        update nursing_order
+        set order_status = 5,
+            payment_status = 2,
+            cancel_reason = #{reason},
+            cancel_time = sysdate(),
+            update_by = #{username},
+            update_time = sysdate()
+        where id = #{id} and order_status = 0
+    </update>
+
+    <update id="markRefunding">
+        update nursing_order
+        set refund_status = 1,
+            update_by = #{username},
+            update_time = sysdate()
+        where id = #{id} and refund_status = 0
+    </update>
+</mapper>

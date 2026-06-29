@@ -1,0 +1,20 @@
+{
+  "screenshots": [
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-order-list.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-order-executed.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-order-detail.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-refund-list.png",
+    "C:\\Users\\青峰不语\\Desktop\\黑马实训\\zzyl-springboot\\RuoYi-Springboot3\\homework-output\\screenshots\\defense-refund-detail.png"
+  ],
+  "checks": {
+    "orderMenu": true,
+    "orderTabs": true,
+    "orderActions": true,
+    "cancelDialog": true,
+    "refundDialog": true,
+    "detailSections": true,
+    "refundTabs": true,
+    "refundDetail": true
+  },
+  "consoleErrors": []
+}

@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.nursing.mapper.ElderCareMapper">
+
+    <resultMap type="VisitorAppointment" id="AppointmentResult">
+        <id property="id" column="id"/>
+        <result property="visitType" column="visit_type"/>
+        <result property="visitorName" column="visitor_name"/>
+        <result property="visitorPhone" column="visitor_phone"/>
+        <result property="elderName" column="elder_name"/>
+        <result property="appointmentTime" column="appointment_time"/>
+        <result property="status" column="status"/>
+        <result property="arrivalTime" column="arrival_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <resultMap type="VisitRecord" id="VisitRecordResult">
+        <id property="id" column="id"/>
+        <result property="appointmentId" column="appointment_id"/>
+        <result property="visitType" column="visit_type"/>
+        <result property="visitorName" column="visitor_name"/>
+        <result property="visitorPhone" column="visitor_phone"/>
+        <result property="elderName" column="elder_name"/>
+        <result property="relationName" column="relation_name"/>
+        <result property="visitTime" column="visit_time"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <resultMap type="ResidentBed" id="ResidentBedResult">
+        <id property="id" column="id"/>
+        <result property="floorNo" column="floor_no"/>
+        <result property="roomNo" column="room_no"/>
+        <result property="bedNo" column="bed_no"/>
+        <result property="elderName" column="elder_name"/>
+        <result property="elderGender" column="elder_gender"/>
+        <result property="nursingLevel" column="nursing_level"/>
+        <result property="caregiverNames" column="caregiver_names"/>
+    </resultMap>
+
+    <select id="selectAppointmentList" parameterType="VisitorAppointment" resultMap="AppointmentResult">
+        select id, visit_type, visitor_name, visitor_phone, elder_name, appointment_time,
+               case when status = 0 and appointment_time &lt; now() then 3 else status end as status,
+               arrival_time, create_by, create_time, update_by, update_time, remark
+        from visitor_appointment
+        <where>
+            <if test="visitorName != null and visitorName != ''">
+                and visitor_name like concat('%', #{visitorName}, '%')
+            </if>
+            <if test="visitorPhone != null and visitorPhone != ''">
+                and visitor_phone like concat('%', #{visitorPhone}, '%')
+            </if>
+            <if test="visitType != null">
+                and visit_type = #{visitType}
+            </if>
+            <if test="status != null">
+                <choose>
+                    <when test="status == 3">and status = 0 and appointment_time &lt; now()</when>
+                    <when test="status == 0">and status = 0 and appointment_time &gt;= now()</when>
+                    <otherwise>and status = #{status}</otherwise>
+                </choose>
+            </if>
+            <if test="params.beginTime != null and params.beginTime != ''">
+                and appointment_time &gt;= #{params.beginTime}
+            </if>
+            <if test="params.endTime != null and params.endTime != ''">
+                and appointment_time &lt;= concat(#{params.endTime}, ' 23:59:59')
+            </if>
+        </where>
+        order by appointment_time desc
+    </select>
+
+    <select id="selectAppointmentById" parameterType="Long" resultMap="AppointmentResult">
+        select * from visitor_appointment where id = #{id}
+    </select>
+
+    <insert id="insertAppointment" parameterType="VisitorAppointment" useGeneratedKeys="true" keyProperty="id">
+        insert into visitor_appointment
+            (visit_type, visitor_name, visitor_phone, elder_name, appointment_time, status,
+             create_by, create_time, remark)
+        values
+            (#{visitType}, #{visitorName}, #{visitorPhone}, #{elderName}, #{appointmentTime}, #{status},
+             #{createBy}, sysdate(), #{remark})
+    </insert>
+
+    <update id="updateAppointmentStatus">
+        update visitor_appointment
+        set status = #{status},
+            arrival_time = #{arrivalTime},
+            update_by = #{updateBy},
+            update_time = sysdate()
+        where id = #{id} and status = 0
+    </update>
+
+    <select id="selectVisitRecordList" parameterType="VisitRecord" resultMap="VisitRecordResult">
+        select id, appointment_id, visit_type, visitor_name, visitor_phone, elder_name,
+               relation_name, visit_time, create_by, create_time, remark
+        from visitor_record
+        <where>
+            <if test="visitorName != null and visitorName != ''">
+                and visitor_name like concat('%', #{visitorName}, '%')
+            </if>
+            <if test="visitorPhone != null and visitorPhone != ''">
+                and visitor_phone like concat('%', #{visitorPhone}, '%')
+            </if>
+            <if test="visitType != null">
+                and visit_type = #{visitType}
+            </if>
+            <if test="params.beginTime != null and params.beginTime != ''">
+                and visit_time &gt;= #{params.beginTime}
+            </if>
+            <if test="params.endTime != null and params.endTime != ''">
+                and visit_time &lt;= concat(#{params.endTime}, ' 23:59:59')
+            </if>
+        </where>
+        order by visit_time desc
+    </select>
+
+    <insert id="insertVisitRecord" parameterType="VisitRecord" useGeneratedKeys="true" keyProperty="id">
+        insert into visitor_record
+            (appointment_id, visit_type, visitor_name, visitor_phone, elder_name, relation_name,
+             visit_time, create_by, create_time, remark)
+        values
+            (#{appointmentId}, #{visitType}, #{visitorName}, #{visitorPhone}, #{elderName}, #{relationName},
+             #{visitTime}, #{createBy}, sysdate(), #{remark})
+    </insert>
+
+    <select id="selectResponsibleResidents" resultMap="ResidentBedResult">
+        select r.id, r.floor_no, r.room_no, r.bed_no, r.elder_name, r.elder_gender, r.nursing_level,
+               group_concat(c.name order by c.id separator '、') as caregiver_names
+        from nursing_resident r
+        left join nursing_resident_caregiver rc on rc.resident_id = r.id
+        left join nursing_caregiver c on c.id = rc.caregiver_id and c.status = 1
+        <where>
+            r.status = 1
+            <if test="floorNo != null">and r.floor_no = #{floorNo}</if>
+            <if test="elderName != null and elderName != ''">
+                and r.elder_name like concat('%', #{elderName}, '%')
+            </if>
+        </where>
+        group by r.id, r.floor_no, r.room_no, r.bed_no, r.elder_name, r.elder_gender, r.nursing_level
+        order by r.floor_no, r.room_no, r.bed_no
+    </select>
+
+    <select id="selectCaregivers" resultType="Caregiver">
+        select id, name, phone from nursing_caregiver where status = 1 order by id
+    </select>
+
+    <delete id="deleteResidentCaregivers" parameterType="Long">
+        delete from nursing_resident_caregiver where resident_id = #{residentId}
+    </delete>
+
+    <insert id="insertResidentCaregiver">
+        insert into nursing_resident_caregiver(resident_id, caregiver_id, create_by, create_time)
+        values(#{residentId}, #{caregiverId}, #{createBy}, sysdate())
+    </insert>
+
+    <select id="selectDashboardSummary" resultType="java.util.HashMap">
+        select
+          (select count(*) from nursing_resident where status = 1) as elderCount,
+          (select count(*) from nursing_resident where status = 1) as bedCount,
+          (select count(*) from nursing_project where status = 1) as serviceCount,
+          (select count(*) from nursing_caregiver where status = 1) as employeeCount,
+          (select count(*) from visitor_appointment where status = 0 and date(appointment_time) = curdate()) as todayAppointments,
+          (select count(*) from visitor_record where date(visit_time) = curdate()) as todayVisits
+    </select>
+</mapper>
